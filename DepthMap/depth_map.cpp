@@ -1,8 +1,10 @@
-#include "libfreenect.hpp"
 #include <iostream>
 #include <vector>
 #include <cmath>
 #include <pthread.h>
+#include <fstream>
+
+#include "libfreenect.hpp"
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
@@ -10,6 +12,7 @@
 
 using namespace std;
 using namespace cv;
+
 
 class myMutex {
 	public:
@@ -101,6 +104,7 @@ class MyFreenectDevice : public Freenect::FreenectDevice {
 		bool m_new_depth_frame;
 };
 
+
 int main(int argc, char **argv) {
 	bool die(false);
 	string filename("snapshot");
@@ -137,10 +141,10 @@ int main(int argc, char **argv) {
 			destroyWindow("depth");
 			break;
 		}
-		if( k == 8 ) {
+		if( k == 32 ) {
 			std::ostringstream file;
 			file << filename << i_snap << suffix;
-			cv::imwrite(file.str(),rgbMat);
+			cv::imwrite(file.str(),depthMat);
 			i_snap++;
 		}
 		if(iter >= 1000) break;
@@ -149,5 +153,6 @@ int main(int argc, char **argv) {
 	
 	device.stopVideo();
 	device.stopDepth();
+	
 	return 0;
 }
