@@ -3,3 +3,4 @@ project("KinectProject")
 
 add_subdirectory(DepthMap)
 add_subdirectory(PointCloud)
+add_subdirectory(Calibration)

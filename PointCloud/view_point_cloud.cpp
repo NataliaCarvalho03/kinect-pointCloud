@@ -112,7 +112,7 @@ void DrawGLScene()
     short *depth = 0;
     char *rgb = 0;
     uint32_t ts;
-    if (freenect_sync_get_depth((void**)&depth, &ts, 0, FREENECT_DEPTH_11BIT) < 0)
+    if (freenect_sync_get_depth((void**)&depth, &ts, 0, FREENECT_DEPTH_11BIT) < 0) //FREENECT_DEPTH_11BIT
 	no_kinect_quit();
     if (freenect_sync_get_video((void**)&rgb, &ts, 0, FREENECT_VIDEO_RGB) < 0)
 	no_kinect_quit();
