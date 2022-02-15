@@ -6,7 +6,7 @@ find_package(libfreenect REQUIRED)
 
 
 include_directories( /usr/local/include/libfreenect/
-                     /usr/local/include/libusb-1.0/
+                     /usr/include/libusb-1.0/
 )
 
 add_executable(

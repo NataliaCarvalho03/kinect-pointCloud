@@ -23,6 +23,9 @@
  * Binary distributions must follow the binary distribution requirements of
  * either License.
  */
+
+#include <iostream>
+
 #include <signal.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -44,7 +47,7 @@ void depth_cb(freenect_device* dev, void* data, uint32_t timestamp)
 	cv::Mat depthMat(cv::Size(640,480),CV_16UC1);
 	uint16_t* depth = static_cast<uint16_t*>(data);
 	depthMat.data = (uchar*) data;
-	cv::imwrite("depth.png", depthMat);
+	//cv::imwrite("depth.png", depthMat);
 }
 
 void video_cb(freenect_device* dev, void* data, uint32_t timestamp)
@@ -56,7 +59,8 @@ void video_cb(freenect_device* dev, void* data, uint32_t timestamp)
 	cv::split(rgbMat, channels);
 	cv::Mat organized_channels[3] = {channels[2], channels[1], channels[0]};
 	cv::merge(organized_channels, 3, final_image);
-	cv::imwrite("rgb.png", final_image);
+	//cv::imwrite("rgb.png", final_image);
+
 }
 
 volatile bool running = true;
